@@ -74,9 +74,9 @@ class HomeScreen extends React.Component {
             </View>
           </TouchableOpacity>
 
-          export default StackNavigator({
-              Home: {  screen: Homescreen,  },
-                });
+          export default StackNavigator(
+            ///Why is this lne giving me issues
+              Home: {  screen: Homescreen  } );
 
         </View>
     );
