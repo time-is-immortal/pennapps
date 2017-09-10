@@ -2,26 +2,46 @@ import React from 'react';
 import { StyleSheet,
   Text,
   TouchableOpacity,
+  AppRegistry,
   View,
   TextInput
  } from 'react-native';
 
 import { Permissions, Notifications } from 'expo';
+import {StackNavigator,} from 'react-navigation';
 
-export default class App extends React.Component {
+class HomeScreen extends React.Component {
   static navigationOptions = {
-    title: 'Login',
-    }
+    title: 'Home'}
+
+  constructor(props) {
+    super(props);
+    this._onLogin = this._onLogin.bind(this);
+    this._onSignUp = this._onSignUp.bind(this);
+  }
   state = {
     username: '',
     password: '',
   }
-  render() {
+  _onLogin() {
+    console.log("login btn pressed");
+     this.props.navigation.navigate("Home");
+
+ }
+
+ _onSignUp = () => {
+     console.log("sign up btn works");
+   this.props.navigation.navigate("Home");
+
+
+ }
+  render = () => {
     return (
       <View style={styles.container}>
         <Text style={styles.header}>
         Code Red
         </Text>
+
         <Text>
         A Good Samaritan is on their way!
         </Text>
@@ -39,16 +59,24 @@ export default class App extends React.Component {
 
 
            <TouchableOpacity
-            style={styles.button}
-            onPress = {this._onLogin}>
+             onPress={this._onLogin}>
+           <View
+            style={styles.button}>
             <Text>Login</Text>
+            </View>
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={styles.button}
-              onPress = {this._onSignUp}>
+            onPress={this._onSignUp}>
+            <View
+            style={styles.button}>
             <Text>Sign Up</Text>
+            </View>
           </TouchableOpacity>
+
+          export default StackNavigator({
+              Home: {  screen: Homescreen,  },
+                });
 
         </View>
     );
@@ -56,18 +84,6 @@ export default class App extends React.Component {
 }
 
 
- _onLogin = () => {
-    this.props.navigation.navigate("map");
-
-    //need to connect to use fetch to connect to database
-    // tcp:
-
-}
-
-_onSignUp = async () => {
-  console.log("sign up btn works");
-
-}
 
 
 const styles = StyleSheet.create({
